@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { Swords } from "lucide-react";
+import { MoreVertical, Swords } from "lucide-react";
+import CardMenu from "./CardMenu";
 
 interface ProductCardProps {
   image: string;
@@ -17,7 +18,7 @@ const ProductCard = ({
   badgeColor,
 }: ProductCardProps) => {
   return (
-    <div className="p-[18px] rounded-2xl w-[411px] h-[475px] border border-border bg-white flex flex-col gap-[18px]">
+    <div className="p-[18px] rounded-[36px] w-[411px] h-[475px] border border-border bg-white flex flex-col gap-[18px]">
       <div className="relative">
         <Image
           src={image}
@@ -26,7 +27,7 @@ const ProductCard = ({
           height={0}
           sizes="100vw"
           style={{ width: "100%", height: "auto" }}
-          className="rounded-2xl"
+          className="rounded-[18px]"
         />
       </div>
 
@@ -44,11 +45,15 @@ const ProductCard = ({
         </div>
 
         <div className="flex justify-between">
-          <button className="flex justify-center items-center rounded-xl py-2 px-3 gap-2 bg-white text-black border border-border">
+          <button className="flex shadow-md justify-center items-center rounded-[18px] py-[9px] px-3 gap-[9px] bg-white text-black border border-border">
             <Swords />
             <span className="font-medium text-lg">Start Challenge</span>
           </button>
-          <span>...</span>
+          <CardMenu>
+            <button className="border border-border rounded-[18px] shadow-md group-hover:opacity-100 transition-opacity px-3 py-2 outline-none">
+              <MoreVertical className="text-black opacity-75 hover:opacity-100 transition-opacity" />
+            </button>
+          </CardMenu>
         </div>
       </div>
     </div>
