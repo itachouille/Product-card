@@ -3,7 +3,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { PropsWithChildren } from "react";
@@ -13,46 +12,29 @@ const CardMenu = ({ children }: PropsWithChildren) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-fit rounded-xl p-[6px]"
+        className="w-fit rounded-xl p-[6px] flex flex-col gap-[6px]"
         /*    onClick={(e) => e.stopPropagation()} */
-        /*  side={side}
-        sideOffset={sideOffset} */
+        align="start"
       >
         <DropdownMenuItem
           className="p-[6px] cursor-pointer" /* onClick={onCopyLink} */
         >
           <Edit className="size-4" />
-          Edit Challenge
+          <span className="text-xs font-medium">Edit Challenge</span>
         </DropdownMenuItem>
+
         <DropdownMenuItem
-          className="p-[6px]  cursor-pointer"
+          className="p-[6px] cursor-pointer"
           /*  onClick={() => onOpen(id, title)} */
         >
           <Share className="size-4" />
-          Share Challenge
+          <span className="text-xs font-medium">Share Challenge</span>
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem
-          className="p-[6px] cursor-pointer text-destructive"
-          /*  onClick={() => onOpen(id, title)} */
-        >
+
+        <DropdownMenuItem className="p-[6px] cursor-pointer text-destructive">
           <Trash2 className="size-4" />
-          Delete
+          <span className="text-xs font-medium">Delete</span>
         </DropdownMenuItem>
-        {/*  <CorfirmModal
-          header="Delete board?"
-          description="This will delete the board and all of its contents."
-          disabled={pending}
-          onCorfirm={onDelete}
-        >
-          <Button
-            variant="ghost"
-            className="p-3 cursor-pointer text-sm w-full justify-start font-normal"
-          >
-            <Trash2 className="size-4 mr-2" />
-            Delete
-          </Button>
-        </CorfirmModal> */}
       </DropdownMenuContent>
     </DropdownMenu>
   );

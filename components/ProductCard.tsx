@@ -26,8 +26,7 @@ const ProductCard = ({
           width={0}
           height={0}
           sizes="100vw"
-          style={{ width: "100%", height: "auto" }}
-          className="rounded-[18px]"
+          style={{ width: "100%", height: "auto", borderRadius: "18px" }}
         />
       </div>
 
