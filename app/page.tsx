@@ -1,14 +1,11 @@
+"use client";
+
 import ProductCard from "@/components/ProductCard";
 import RenameModal from "@/components/RenameModal";
+import { useState } from "react";
 
 export default function Page() {
-  const data = [
-    {
-      title: "Raycast Wallpaper #1",
-      description: "Recreate this wallpaper using AI.",
-      badge: "Premium",
-      image: "/raycast_bg_1.png",
-    },
+  const [data, setData] = useState([
     {
       title: "Raycast Wallpaper #1",
       description: "Recreate this wallpaper using AI.",
@@ -19,27 +16,48 @@ export default function Page() {
       title: "Raycast Wallpaper #2",
       description: "Recreate this wallpaper using AI.",
       badge: "Premium",
-      image: "/raycast_bg_2.png",
+      image: "/raycast_bg_1.png",
     },
     {
-      title: "Raycast Wallpaper #2",
+      title: "Raycast Wallpaper #3",
       description: "Recreate this wallpaper using AI.",
       badge: "Premium",
       image: "/raycast_bg_2.png",
     },
     {
-      title: "Raycast Wallpaper #3",
+      title: "Raycast Wallpaper #4",
+      description: "Recreate this wallpaper using AI.",
+      badge: "Premium",
+      image: "/raycast_bg_2.png",
+    },
+    {
+      title: "Raycast Wallpaper #5",
       description: "Recreate this wallpaper using AI.",
       badge: "Free",
       image: "/raycast_bg_3.png",
     },
     {
-      title: "Raycast Wallpaper #3",
+      title: "Raycast Wallpaper #6",
       description: "Recreate this wallpaper using AI.",
       badge: "Free",
       image: "/raycast_bg_3.png",
     },
-  ];
+  ]);
+
+  const [selectedCard, setSelectedCard] = useState(null);
+
+  const openRenameModal = (index) => {
+    setSelectedCard(index);
+  };
+
+  const renameCard = (newTitle: string) => {
+    setData((prevData) =>
+      prevData.map((item, index) =>
+        index === selectedCard ? { ...item, title: newTitle } : item
+      )
+    );
+    setSelectedCard(null);
+  };
 
   return (
     <main className="mx-auto max-w-7xl flex flex-col justify-center items-center">
@@ -58,10 +76,15 @@ export default function Page() {
             image={item.image}
             badge={item.badge}
             id={index}
+            onRename={() => openRenameModal(index)}
           />
         ))}
       </div>
-      <RenameModal />
+      <RenameModal
+        currentTitle={data[selectedCard].title}
+        onSave={renameCard}
+        onClose={() => setSelectedCard(null)}
+      />
     </main>
   );
 }

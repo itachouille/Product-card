@@ -7,17 +7,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { useRenameModal } from "@/contexts/RenameModalContext";
 
 interface CardMenuProps {
   children: React.ReactNode;
   id: number;
   title: string;
+  onRename: () => void;
 }
 
-const CardMenu = ({ children, id, title }: CardMenuProps) => {
-  const { onOpen } = useRenameModal();
-
+const CardMenu = ({ children, id, title, onRename }: CardMenuProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
@@ -26,10 +24,7 @@ const CardMenu = ({ children, id, title }: CardMenuProps) => {
         /*     onClick={(e) => e.stopPropagation()} */
         align="start"
       >
-        <DropdownMenuItem
-          className="p-[6px] cursor-pointer"
-          onClick={() => onOpen(id, title)}
-        >
+        <DropdownMenuItem className="p-[6px] cursor-pointer" onClick={onRename}>
           <Edit className="size-4" />
           <span className="text-xs font-medium">Edit Challenge</span>
         </DropdownMenuItem>

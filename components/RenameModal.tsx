@@ -12,10 +12,8 @@ import {
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import { useRenameModal } from "@/contexts/RenameModalContext";
 
 export default function RenameModal() {
-  const { initialValues, isOpen, onClose } = useRenameModal();
   const [title, setTitle] = useState(initialValues.title);
   const [pending, setPending] = useState(false);
 

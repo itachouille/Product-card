@@ -8,6 +8,7 @@ interface ProductCardProps {
   description: string;
   badge: string;
   id: number;
+  onRename: () => void;
 }
 
 const ProductCard = ({
@@ -16,6 +17,7 @@ const ProductCard = ({
   description,
   badge,
   id,
+  onRename,
 }: ProductCardProps) => {
   return (
     <div className="p-[18px] rounded-[36px] min-w-80 h-full border border-border bg-white flex flex-col gap-[18px]">
@@ -48,7 +50,7 @@ const ProductCard = ({
             <Swords className="size-6" />
             <span className="font-medium text-lg">Start Challenge</span>
           </button>
-          <CardMenu id={id} title={title}>
+          <CardMenu id={id} title={title} onRename={onRename}>
             <button className="border border-border rounded-[18px] shadow-md group-hover:opacity-100 transition-opacity px-3 py-2 outline-none">
               <MoreVertical className="text-black opacity-75 hover:opacity-100 transition-opacity" />
             </button>
