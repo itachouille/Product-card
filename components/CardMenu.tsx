@@ -10,21 +10,18 @@ import {
 
 interface CardMenuProps {
   children: React.ReactNode;
-  id: number;
-  title: string;
-  onRename: () => void;
+  onEdit: () => void;
 }
 
-const CardMenu = ({ children, id, title, onRename }: CardMenuProps) => {
+const CardMenu = ({ children, onEdit }: CardMenuProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent
         className="w-fit rounded-xl p-[6px] flex flex-col gap-[6px]"
-        /*     onClick={(e) => e.stopPropagation()} */
         align="start"
       >
-        <DropdownMenuItem className="p-[6px] cursor-pointer" onClick={onRename}>
+        <DropdownMenuItem className="p-[6px] cursor-pointer" onClick={onEdit}>
           <Edit className="size-4" />
           <span className="text-xs font-medium">Edit Challenge</span>
         </DropdownMenuItem>

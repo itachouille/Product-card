@@ -9,59 +9,51 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 
-export default function RenameModal() {
-  const [title, setTitle] = useState(initialValues.title);
-  const [pending, setPending] = useState(false);
+interface RenameModalProps {
+  title: string;
+  onClose: () => void;
+  onSave: (newTitle: string) => void;
+}
 
-  useEffect(() => {
-    setTitle(initialValues.title);
-  }, [initialValues]);
+export default function RenameModal({
+  title,
+  onClose,
+  onSave,
+}: RenameModalProps) {
+  const [newTitle, setNewTitle] = useState(title);
 
-  const onSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setPending(true);
-
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      onClose();
-    } catch (error) {
-      console.error("Failed to save:", error);
-    } finally {
-      setPending(false);
+    if (newTitle.trim()) {
+      onSave(newTitle);
     }
   };
-
-  if (!isOpen) return null;
-
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
+    <Dialog open={true} onClose={onClose}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Edit card title</DialogTitle>
         </DialogHeader>
         <DialogDescription>Enter a new title for this card</DialogDescription>
-        <form onSubmit={onSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <Input
-            disabled={pending}
             required
-            maxLength={60}
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
+            maxLength={30}
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
             placeholder="Card title"
           />
           <DialogFooter>
             <DialogClose asChild>
-              <Button type="button" variant="outline">
+              <Button type="button" variant="outline" onClick={onClose}>
                 Cancel
               </Button>
             </DialogClose>
-            <Button disabled={pending} type="submit">
-              {pending ? "Saving..." : "Save"}
-            </Button>
+            <Button type="submit">Save</Button>
           </DialogFooter>
         </form>
       </DialogContent>
