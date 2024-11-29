@@ -5,8 +5,16 @@ import RenameModal from "@/components/RenameModal";
 import SearchFilter from "@/components/SearchFilter";
 import { useState } from "react";
 
+export interface CardProps {
+  id: number;
+  title: string;
+  description: string;
+  badge: string;
+  image: string;
+}
+
 export default function Page() {
-  const [data, setData] = useState([
+  const [data, setData] = useState<CardProps[]>([
     {
       id: 1,
       title: "Component Library 1",
@@ -52,7 +60,7 @@ export default function Page() {
   ]);
 
   const [isRenameModalOpen, setIsRenameModalOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCard, setSelectedCard] = useState<CardProps | null>(null);
   const [search, setSearch] = useState("");
   const [filterBadge, setFilterBadge] = useState("all");
 
@@ -70,7 +78,7 @@ export default function Page() {
     setFilterBadge("all");
   };
 
-  const handleOpenRenameModal = (card) => {
+  const handleOpenRenameModal = (card: CardProps) => {
     setSelectedCard(card);
     setIsRenameModalOpen(true);
   };
@@ -78,7 +86,7 @@ export default function Page() {
   const handleRenameCard = (newTitle: string) => {
     setData((prevData) =>
       prevData.map((item) =>
-        item.id === selectedCard.id ? { ...item, title: newTitle } : item
+        item.id === selectedCard?.id ? { ...item, title: newTitle } : item
       )
     );
     setIsRenameModalOpen(false);
@@ -113,7 +121,7 @@ export default function Page() {
 
       {isRenameModalOpen && (
         <RenameModal
-          title={selectedCard?.title}
+          title={selectedCard?.title || ""}
           onClose={() => setIsRenameModalOpen(false)}
           onSave={handleRenameCard}
         />

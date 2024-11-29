@@ -1,12 +1,9 @@
 import Image from "next/image";
 import { MoreVertical, Swords } from "lucide-react";
 import CardMenu from "./CardMenu";
+import { CardProps } from "@/app/page";
 
-interface ProductCardProps {
-  image: string;
-  title: string;
-  description: string;
-  badge: string;
+interface ProductCardProps extends CardProps {
   onEdit: () => void;
 }
 
