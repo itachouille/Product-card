@@ -9,43 +9,43 @@ export default function Page() {
   const [data, setData] = useState([
     {
       id: 1,
-      title: "Raycast Wallpaper #1",
-      description: "Recreate this wallpaper using AI.",
+      title: "Component Library 1",
+      description: "Interface with careful details.",
       badge: "Premium",
       image: "/raycast_bg_1.png",
     },
     {
       id: 2,
-      title: "Raycast Wallpaper #2",
-      description: "Recreate this wallpaper using AI.",
+      title: "Landing Page 1",
+      description: "Structure your landing page.",
       badge: "Premium",
       image: "/raycast_bg_1.png",
     },
     {
       id: 3,
-      title: "Raycast Wallpaper #3",
-      description: "Recreate this wallpaper using AI.",
+      title: "Dashboard CRM 1",
+      description: "Develop your skills in data management.",
       badge: "Premium",
       image: "/raycast_bg_2.png",
     },
     {
       id: 4,
-      title: "Raycast Wallpaper #4",
-      description: "Recreate this wallpaper using AI.",
+      title: "Dashboard CRM 2",
+      description: "Develop your skills in data management.",
       badge: "Premium",
       image: "/raycast_bg_2.png",
     },
     {
       id: 5,
-      title: "Raycast Wallpaper #5",
-      description: "Recreate this wallpaper using AI.",
+      title: "Landing Page 2",
+      description: "Structure your landing page.",
       badge: "Free",
       image: "/raycast_bg_3.png",
     },
     {
       id: 6,
-      title: "Raycast Wallpaper #6",
-      description: "Recreate this wallpaper using AI.",
+      title: "Landing Page 3",
+      description: "Structure your landing page.",
       badge: "Free",
       image: "/raycast_bg_3.png",
     },
@@ -75,7 +75,7 @@ export default function Page() {
     setIsRenameModalOpen(true);
   };
 
-  const handleRenameCard = (newTitle) => {
+  const handleRenameCard = (newTitle: string) => {
     setData((prevData) =>
       prevData.map((item) =>
         item.id === selectedCard.id ? { ...item, title: newTitle } : item

@@ -33,7 +33,7 @@ export default function RenameModal({
     }
   };
   return (
-    <Dialog open={true} onClose={onClose}>
+    <Dialog open={true} onOpenChange={onClose}>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Edit card title</DialogTitle>

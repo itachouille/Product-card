@@ -42,7 +42,7 @@ export default function SearchFilter({
           <SelectValue placeholder="Filter by badge" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="all">All Prices</SelectItem>
+          <SelectItem value="all">All challenges</SelectItem>
           <SelectItem value="Free">Free</SelectItem>
           <SelectItem value="Premium">Premium</SelectItem>
         </SelectContent>
