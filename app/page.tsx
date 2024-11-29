@@ -1,8 +1,10 @@
 "use client";
 
+import { motion } from "framer-motion";
 import ProductCard from "@/components/ProductCard";
 import RenameModal from "@/components/RenameModal";
 import SearchFilter from "@/components/SearchFilter";
+import AnimatedHeading from "@/components/ui/AnimatedHeading";
 import { useState } from "react";
 
 export interface CardProps {
@@ -93,12 +95,25 @@ export default function Page() {
     setSelectedCard(null);
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, scale: 0.9, y: 20 },
+    visible: { opacity: 1, scale: 1, y: 0 },
+  };
+
   return (
     <main className="mx-auto max-w-7xl flex flex-col justify-center items-center">
       <div className="pb-6 pt-6">
-        <h1 className="text-center text-3xl md:text-4xl font-bold tracking-tight text-gray-900">
-          High-quality product selection
-        </h1>
+        <AnimatedHeading />
       </div>
 
       <SearchFilter
@@ -109,15 +124,22 @@ export default function Page() {
         onClearFilters={clearFilters}
       />
 
-      <div className="pt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <motion.div
+        className="pt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {filteredData.map((item, index) => (
-          <ProductCard
+          <motion.div
             key={index}
-            {...item}
-            onEdit={() => handleOpenRenameModal(item)}
-          />
+            variants={cardVariants}
+            whileHover={{ scale: 1.05 }}
+          >
+            <ProductCard {...item} onEdit={() => handleOpenRenameModal(item)} />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {isRenameModalOpen && (
         <RenameModal

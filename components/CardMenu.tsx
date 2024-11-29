@@ -18,7 +18,7 @@ const CardMenu = ({ children, onEdit }: CardMenuProps) => {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-fit rounded-xl p-[6px] flex flex-col gap-[6px]"
+        className="w-fit p-[6px] flex flex-col gap-[6px] border border-border rounded-[12px] shadow-md"
         align="start"
       >
         <DropdownMenuItem className="p-[6px] cursor-pointer" onClick={onEdit}>
@@ -31,7 +31,7 @@ const CardMenu = ({ children, onEdit }: CardMenuProps) => {
           <span className="text-xs font-medium">Share Challenge</span>
         </DropdownMenuItem>
 
-        <DropdownMenuItem className="p-[6px] cursor-pointer text-destructive">
+        <DropdownMenuItem className="p-[6px] cursor-pointer text-destructive hover:!text-red-600 hover:!bg-red-100">
           <Trash2 className="size-4" />
           <span className="text-xs font-medium">Delete</span>
         </DropdownMenuItem>
