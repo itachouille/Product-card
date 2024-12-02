@@ -79,7 +79,7 @@ export default function Page() {
   const clearFilters = () => {
     setSearch("");
     setFilterBadge("all");
-    toast("Filter remove");
+    toast("Filters have been cleared.");
   };
 
   const handleOpenRenameModal = (card: CardProps) => {
@@ -95,7 +95,7 @@ export default function Page() {
     );
     setIsRenameModalOpen(false);
     setSelectedCard(null);
-    toast("Card rename");
+    toast("Title renamed successfully!");
   };
 
   return (
