@@ -1,6 +1,6 @@
 "use client";
 
-import { Edit, Share, Trash2 } from "lucide-react";
+import { Edit, MoreVertical, Share, Trash2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,16 +9,19 @@ import {
 } from "./ui/dropdown-menu";
 
 interface CardMenuProps {
-  children: React.ReactNode;
   onEdit: () => void;
 }
 
-const CardMenu = ({ children, onEdit }: CardMenuProps) => {
+const CardMenu = ({ onEdit }: CardMenuProps) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
+        <button className="border border-border rounded-[12px] shadow-md hover:bg-secondary/10 px-3 py-[9px] transition-colors outline-none">
+          <MoreVertical className="text-primary" />
+        </button>
+      </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-fit p-[6px] flex flex-col gap-[6px] border border-border rounded-[12px] shadow-md"
+        className="w-fit p-[6px] flex flex-col gap-[6px] border border-primary rounded-[12px] shadow-md"
         align="start"
       >
         <DropdownMenuItem className="p-[6px] cursor-pointer" onClick={onEdit}>

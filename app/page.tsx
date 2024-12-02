@@ -1,11 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
 import ProductCard from "@/components/ProductCard";
 import RenameModal from "@/components/RenameModal";
 import SearchFilter from "@/components/SearchFilter";
-import AnimatedHeading from "@/components/ui/AnimatedHeading";
+import AnimatedHeading from "@/components/AnimatedHeading";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 export interface CardProps {
   id: number;
@@ -78,6 +79,7 @@ export default function Page() {
   const clearFilters = () => {
     setSearch("");
     setFilterBadge("all");
+    toast("Filter remove");
   };
 
   const handleOpenRenameModal = (card: CardProps) => {
@@ -93,25 +95,11 @@ export default function Page() {
     );
     setIsRenameModalOpen(false);
     setSelectedCard(null);
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.9, y: 20 },
-    visible: { opacity: 1, scale: 1, y: 0 },
+    toast("Card rename");
   };
 
   return (
-    <main className="mx-auto max-w-7xl flex flex-col justify-center items-center">
+    <main className="mx-auto max-w-xl md:max-w-2xl lg:max-w-5xl flex flex-col justify-center items-center">
       <div className="pb-6 pt-6">
         <AnimatedHeading />
       </div>
@@ -124,22 +112,18 @@ export default function Page() {
         onClearFilters={clearFilters}
       />
 
-      <motion.div
-        className="pt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
+      <div className="max-w-80 md:max-w-2xl lg:max-w-5xl pt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-hidden">
         {filteredData.map((item, index) => (
           <motion.div
-            key={index}
-            variants={cardVariants}
-            whileHover={{ scale: 1.05 }}
+            key={item.id}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.2, duration: 0.5 }}
           >
             <ProductCard {...item} onEdit={() => handleOpenRenameModal(item)} />
           </motion.div>
         ))}
-      </motion.div>
+      </div>
 
       {isRenameModalOpen && (
         <RenameModal

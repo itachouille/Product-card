@@ -29,7 +29,7 @@ const AnimatedHeading: React.FC = () => {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="text-center text-2xl md:text-4xl font-bold tracking-tight text-gray-900"
+      className="text-center text-2xl md:text-4xl font-bold tracking-tight text-gray-900 py-1 lg:py-2"
     >
       {title.split("").map((char, index) => (
         <motion.span
